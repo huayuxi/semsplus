@@ -57,8 +57,7 @@
     </settings>
 
     <typeAliases>
-        <package name="com.eliteams.quick4j.web.model"/>
-        <package name="com.eliteams.quick4j.web.enums"/>
+        <package name="com.semsplus.web.model"/>
     </typeAliases>
 
     <plugins>
