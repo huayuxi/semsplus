@@ -9,4 +9,6 @@
 /src/main/webapp/.#webclasspath
 
 .idea
-quick4j.iml
+semsplus.iml
+/src/main/resources/application.properties
+/src/test/resources/generatorConfig.properties
