@@ -40,8 +40,8 @@
         </javaClientGenerator>
 
         <!--对应数据库表名 -->
-        <table tableName="news" 
-             domainObjectName="News" 
+        <table tableName="sys_auth"
+             domainObjectName="Auth"
              enableCountByExample="false" 
              enableUpdateByExample="false" 
              enableDeleteByExample="false"
