@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.semsplus.web.dao.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.semsplus.web.model.News" >
+    <id column="news_id" property="news_id" jdbcType="INTEGER" />
+    <result column="news_title" property="news_title" jdbcType="VARCHAR" />
+    <result column="news_type" property="news_type" jdbcType="VARCHAR" />
+    <result column="news_menu" property="news_menu" jdbcType="VARCHAR" />
+    <result column="create_time" property="create_time" jdbcType="VARCHAR" />
+    <result column="create_user" property="create_user" jdbcType="INTEGER" />
+    <result column="update_time" property="update_time" jdbcType="VARCHAR" />
+    <result column="update_user" property="update_user" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.semsplus.web.model.News" extends="BaseResultMap" >
+    <result column="news_content" property="news_content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    news_id, news_title, news_type, news_menu, create_time, create_user, update_time, 
+    update_user
+  </sql>
+  <sql id="Blob_Column_List" >
+    news_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where news_id = #{news_id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPage" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+     limit #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news
+    where news_id = #{news_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.semsplus.web.model.News" >
+    insert into news (news_id, news_title, news_type, 
+      news_menu, create_time, create_user, 
+      update_time, update_user, news_content
+      )
+    values (#{news_id,jdbcType=INTEGER}, #{news_title,jdbcType=VARCHAR}, #{news_type,jdbcType=VARCHAR}, 
+      #{news_menu,jdbcType=VARCHAR}, #{create_time,jdbcType=VARCHAR}, #{create_user,jdbcType=INTEGER}, 
+      #{update_time,jdbcType=VARCHAR}, #{update_user,jdbcType=INTEGER}, #{news_content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.semsplus.web.model.News" >
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="news_id != null" >
+        news_id,
+      </if>
+      <if test="news_title != null" >
+        news_title,
+      </if>
+      <if test="news_type != null" >
+        news_type,
+      </if>
+      <if test="news_menu != null" >
+        news_menu,
+      </if>
+      <if test="create_time != null" >
+        create_time,
+      </if>
+      <if test="create_user != null" >
+        create_user,
+      </if>
+      <if test="update_time != null" >
+        update_time,
+      </if>
+      <if test="update_user != null" >
+        update_user,
+      </if>
+      <if test="news_content != null" >
+        news_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="news_id != null" >
+        #{news_id,jdbcType=INTEGER},
+      </if>
+      <if test="news_title != null" >
+        #{news_title,jdbcType=VARCHAR},
+      </if>
+      <if test="news_type != null" >
+        #{news_type,jdbcType=VARCHAR},
+      </if>
+      <if test="news_menu != null" >
+        #{news_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null" >
+        #{create_time,jdbcType=VARCHAR},
+      </if>
+      <if test="create_user != null" >
+        #{create_user,jdbcType=INTEGER},
+      </if>
+      <if test="update_time != null" >
+        #{update_time,jdbcType=VARCHAR},
+      </if>
+      <if test="update_user != null" >
+        #{update_user,jdbcType=INTEGER},
+      </if>
+      <if test="news_content != null" >
+        #{news_content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.semsplus.web.model.News" >
+    update news
+    <set >
+      <if test="news_title != null" >
+        news_title = #{news_title,jdbcType=VARCHAR},
+      </if>
+      <if test="news_type != null" >
+        news_type = #{news_type,jdbcType=VARCHAR},
+      </if>
+      <if test="news_menu != null" >
+        news_menu = #{news_menu,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null" >
+        create_time = #{create_time,jdbcType=VARCHAR},
+      </if>
+      <if test="create_user != null" >
+        create_user = #{create_user,jdbcType=INTEGER},
+      </if>
+      <if test="update_time != null" >
+        update_time = #{update_time,jdbcType=VARCHAR},
+      </if>
+      <if test="update_user != null" >
+        update_user = #{update_user,jdbcType=INTEGER},
+      </if>
+      <if test="news_content != null" >
+        news_content = #{news_content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where news_id = #{news_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.semsplus.web.model.News" >
+    update news
+    set news_title = #{news_title,jdbcType=VARCHAR},
+      news_type = #{news_type,jdbcType=VARCHAR},
+      news_menu = #{news_menu,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=VARCHAR},
+      create_user = #{create_user,jdbcType=INTEGER},
+      update_time = #{update_time,jdbcType=VARCHAR},
+      update_user = #{update_user,jdbcType=INTEGER},
+      news_content = #{news_content,jdbcType=LONGVARCHAR}
+    where news_id = #{news_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.semsplus.web.model.News" >
+    update news
+    set news_title = #{news_title,jdbcType=VARCHAR},
+      news_type = #{news_type,jdbcType=VARCHAR},
+      news_menu = #{news_menu,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=VARCHAR},
+      create_user = #{create_user,jdbcType=INTEGER},
+      update_time = #{update_time,jdbcType=VARCHAR},
+      update_user = #{update_user,jdbcType=INTEGER}
+    where news_id = #{news_id,jdbcType=INTEGER}
+  </update>
+</mapper>
