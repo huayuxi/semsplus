@@ -34,8 +34,14 @@ public class NewsController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/system",method = RequestMethod.PUT)
-    public JSONResult updateNews(@PathVariable String pageNo,@PathVariable String pageSize){
+      @RequestMapping(value = "/system",method = RequestMethod.PUT)
+      public JSONResult updateNews(@PathVariable String pageNo,@PathVariable String pageSize){
+        return new JSONResult<>(newsService.selectByPage(pageNo,pageSize));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/system",method = RequestMethod.DELETE)
+    public JSONResult delNews(@PathVariable String pageNo,@PathVariable String pageSize){
         return new JSONResult<>(newsService.selectByPage(pageNo,pageSize));
     }
 
