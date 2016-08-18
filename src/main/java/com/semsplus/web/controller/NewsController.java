@@ -28,20 +28,20 @@ public class NewsController {
 
     @ResponseBody
     @RequestMapping(value = "/system",method = RequestMethod.POST)
-    public JSONResult addNews(@PathVariable String pageNo,@PathVariable String pageSize){
+    public JSONResult add(@PathVariable String pageNo,@PathVariable String pageSize){
         return new JSONResult<>(newsService.selectByPage(pageNo,pageSize));
     }
 
 
     @ResponseBody
       @RequestMapping(value = "/system",method = RequestMethod.PUT)
-      public JSONResult updateNews(@PathVariable String pageNo,@PathVariable String pageSize){
+      public JSONResult update(@PathVariable String pageNo,@PathVariable String pageSize){
         return new JSONResult<>(newsService.selectByPage(pageNo,pageSize));
     }
 
     @ResponseBody
     @RequestMapping(value = "/system",method = RequestMethod.DELETE)
-    public JSONResult delNews(@PathVariable String pageNo,@PathVariable String pageSize){
+    public JSONResult del(@PathVariable String pageNo,@PathVariable String pageSize){
         return new JSONResult<>(newsService.selectByPage(pageNo,pageSize));
     }
 
