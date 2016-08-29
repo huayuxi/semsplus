@@ -40,9 +40,9 @@ public class NewsController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/system",method = RequestMethod.DELETE)
-    public JSONResult del(@PathVariable String pageNo,@PathVariable String pageSize){
-        return new JSONResult<>(newsService.selectByPage(pageNo,pageSize));
+    @RequestMapping(value = "/system/{id}",method = RequestMethod.DELETE)
+    public JSONResult del(@PathVariable Integer id){
+        return new JSONResult<>(newsService.delete(id));
     }
 
 
